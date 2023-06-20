@@ -1,0 +1,32 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+:root{
+ --corFundo: #4B4453;
+ --corFundoTela: #B0A8B9;
+ --corFundoTitulo: #D5CABD;
+ --corTexto: #fdfdfd;
+}
+
+body,html{
+  background: var(--corFundo);
+}
+
+
+
+#principal-titulo{
+  position: relative;
+  place-content: center;
+  background: var(--corFundoTitulo);
+  border-radius: 10px 10px 0 0;
+}
+
+#principal{
+  position: relative;
+  place-content: center;
+  border-radius: 0 0 10px 10px;
+  background: var(--corFundoTela);
+}
+
