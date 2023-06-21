@@ -1,6 +1,9 @@
-const quiz = document.querySelectorAll('input[type=radio]');
 const btnEnviar = document.querySelector('#enviar');
 const btnProximo = document.querySelector('#proximo');
+let  quiz = document.querySelectorAll('input[type=radio]');
+let quizEnunciado = document.querySelector('#conteiner-item h5')
+
+
 
 let pontuacao;
 const perguntasQuiz = [
@@ -14,22 +17,26 @@ const perguntasQuiz = [
 
 const alternativas = [
   {um: 2, dois: 8, tres: 2},
-  {um: 'Terra, Vento, fogo, Trovão e Água', dois: Terra, Vento, fogo, Trovão, tres: Terra, Vento, folha, Trovão e Areia},
+  {um: 'Terra, Vento, fogo, Trovão e Água', dois: 'Terra, Vento, fogo, Trovão', tres: 'Terra, Vento, folha, Trovão e Areia'},
   {um: '3 Hokaque', dois: '4 Hokaque', tres: '7 Hokaque'},
-  {um: 'Rock Lee, dois: 'Naruto', tres: 'Shikamaru'},
+  {um: 'Rock Lee', dois: 'Naruto', tres: 'Shikamaru'},
   {um: 'Akatisuki', dois: 'Ninjas Renegados', tres: 'Aldeia do Fogo'},
-  {um: 'Ninja", dois: 'Jinchuuriki', tres: 'Besta'},
+  {um: 'Ninja', dois: 'Jinchuuriki', tres: 'Besta'},
 ];
+
+let controle = 0;
+/* while(controle >= perguntasQuiz.length){
+  controle++
+} */
+quizEnunciado.innerText = perguntasQuiz[controle].pergunta
 
 
 
 quiz.forEach((item)=>{
-    item.addEventListener('click',event=>{
-        if(event.target.id == 'um'){
-            return  console.log(event.target.id);
-        }
-    })
+   item.innerText = alternativas[0].um
 })
+
+
 
 
 btnEnviar.addEventListener('click',()=>{
@@ -37,9 +44,14 @@ btnEnviar.addEventListener('click',()=>{
 });
 
 btnProximo.addEventListener('click',()=>{
-    console.log('proximo');
+    if(controle > perguntasQuiz.length){
+        controle = 0
+        return
+    }else{
+        controle++;
+        quizEnunciado.innerText = perguntasQuiz[controle].pergunta
+    }
+
+    console.log(controle);
 })
 
-const pergunta =()=>{
-  
-}
