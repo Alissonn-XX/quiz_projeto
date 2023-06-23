@@ -26,11 +26,40 @@ body,html{
   place-content: center;
   border-radius: 0 0 10px 10px;
   background: var(--corFundoTela);
+
+  overflow: hidden;
+  
+}
+
+#principal::before{
+  content:'';
+  position: absolute;
+  width: 21em;
+  height: 21.5em;
+  background: rgb(218,221,220);
+  background: linear-gradient(100deg, #c3c3c3 0%,transparent 0%,
+  #d4cadf, #b0a8b9,transparent 95%);
+  transform: translate(-500px, -50px) skew(-50deg);
+  z-index: 10;
+  opacity: 0.7;
+  box-shadow: 0 0 20px 10px rgba(0,0,0,0.1);
+}
+
+#principal:is(.acao)::before{
+  animation: espelho 1s ease-out;
+}
+
+#principal:is(.acao2)::before{
+  animation: espelho 1s ease-out;
 }
 
 #conteiner-item h5{
   border-radius: 10px;
   font-size: 25px;
+}
+
+#principal:is(.acao) h5{
+   animation: enunciado .2s ease-out;
 }
 
 .opcao,
@@ -47,4 +76,23 @@ body,html{
 .opcao{
   margin: 2px;
   font-weight: 600;
+}
+
+#principal:is(.acao) [type="radio"]{
+  animation: input .2s ease;
+}
+#principal:is(.acao) .opcao{
+  opacity: 0.9;
+}
+
+@keyframes espelho{
+  100%{transform: translateX(900px) skew(-50deg);}
+}
+
+@keyframes enunciado{
+  50%{opacity: 0.8; transform: scale(.9);}
+}
+
+@keyframes input{
+  50%{opacity: 0.5; background: #b0a8b9;}
 }

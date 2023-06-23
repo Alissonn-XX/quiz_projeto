@@ -1,8 +1,10 @@
 const btnEnviar = document.querySelector('#enviar');
 const btnProximo = document.querySelector('#proximo');
+const principal = document.querySelector('#principal');
+
 let quiz = document.querySelectorAll('input[type=radio]');
-let opcoes = document.querySelectorAll('.opcao')
-let quizEnunciado = document.querySelector('#conteiner-item h5')
+let opcoes = document.querySelectorAll('.opcao');
+let quizEnunciado = document.querySelector('#conteiner-item h5');
 let controle = 0;
 let pontuacao;
 
@@ -36,21 +38,40 @@ const alternativa =(respostasOp = [])=>{
   respostasOp[2].innerText = alternativas[controle].tres
 }
 
-btnEnviar.addEventListener('click',()=>{
-    console.log('enviar');
-});
-
 btnProximo.addEventListener('click',()=>{
+  let classAtiva =  principal.classList.toggle('acao');
   let verificar = controle >= perguntasQuiz.length - 1;
+  
    controle++;
 
-    if(verificar){
+  if(verificar){
       controle = 0;
-      console.log('contorle' + ' ' + controle); 
     }
 
-
-    quizEnunciado.innerText = proximoEnuciado(controle);
-    alternativa(opcoes)
+   
+    retiraClass(principal);
+    adicionarClass(classAtiva);
 })
 
+const retiraClass = (elemento) =>{
+  setTimeout(()=>{
+    elemento.classList.remove('acao');
+  },1010)
+}
+
+const adicionarClass = (elemento) =>{
+  if(elemento){
+    setTimeout(()=>{
+      quizEnunciado.innerText = proximoEnuciado(controle);
+      alternativa(opcoes);
+    },100);
+  }
+}
+
+btnEnviar.addEventListener('click',()=>{
+  console.log('enviar');
+ 
+ 
+  
+  
+})
