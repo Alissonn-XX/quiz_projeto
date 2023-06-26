@@ -6,7 +6,7 @@
 
 ## LAYOUT DA TELA PRINCIPAL
 
- <img src="./image/tala_principal.png">
+ <img src="tela_principal.png">
 
 ---
 
