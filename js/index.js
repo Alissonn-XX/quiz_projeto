@@ -71,7 +71,5 @@ const adicionarClass = (elemento) =>{
 btnEnviar.addEventListener('click',()=>{
   console.log('enviar');
  
- 
-  
-  
+
 })
