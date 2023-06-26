@@ -2,11 +2,14 @@ const btnEnviar = document.querySelector('#enviar');
 const btnProximo = document.querySelector('#proximo');
 const principal = document.querySelector('#principal');
 
-let quiz = document.querySelectorAll('input[type=radio]');
+let quiz = document.querySelectorAll('[type=radio]');
 let opcoes = document.querySelectorAll('.opcao');
 let quizEnunciado = document.querySelector('#conteiner-item h5');
 let controle = 0;
 let pontuacao;
+var test = 0;
+
+var bef = window.getComputedStyle(principal,':before');
 
 const perguntasQuiz=[
  {pergunta: 'Em Quantas nações Naruto é divido?',  resposta: 5},
@@ -38,21 +41,6 @@ const alternativa =(respostasOp = [])=>{
   respostasOp[2].innerText = alternativas[controle].tres
 }
 
-btnProximo.addEventListener('click',()=>{
-  let classAtiva =  principal.classList.toggle('acao');
-  let verificar = controle >= perguntasQuiz.length - 1;
-  
-   controle++;
-
-  if(verificar){
-      controle = 0;
-    }
-
-   
-    retiraClass(principal);
-    adicionarClass(classAtiva);
-})
-
 const retiraClass = (elemento) =>{
   setTimeout(()=>{
     elemento.classList.remove('acao');
@@ -66,10 +54,47 @@ const adicionarClass = (elemento) =>{
       alternativa(opcoes);
     },100);
   }
+
+  return elemento
 }
 
-btnEnviar.addEventListener('click',()=>{
-  console.log('enviar');
- 
+const mudanca = ()=>{
+  let classAtiva =  principal.classList.toggle('acao');
+  let verificar = controle >= perguntasQuiz.length - 1;
+  
+  controle++;
+  
+  if(verificar){
+    controle = 0;
+  }
+  
+  retiraClass(principal);
+  adicionarClass(classAtiva);
+  console.log(bef.animation);
+}
 
+btnProximo.addEventListener('click',mudanca);
+
+
+btnEnviar.addEventListener('click',()=>{
+  
 })
+
+
+
+
+
+
+const captura = ()=>{
+  
+}
+
+
+/* for(let i=0; i < quiz.length; i++){
+  if(bef.animation.substring(0,4)){
+    quiz[i].addEventListener('click',(event)=>{
+        console.log(event.target);
+        console.log(bef.animation.substring(0,4));
+    })
+  }
+} */
