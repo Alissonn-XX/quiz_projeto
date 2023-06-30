@@ -1,0 +1,78 @@
+******VARIAVEIS****
+CONST:
+   btnEnviar -------------------> botão de enviar e comparar respostas recebidas com as respostas do quiz
+   btnProximo ------------------> botão para passar para a próxima pergunta
+   principal  ------------------> div que contem as opções e mostrará as repostas 
+   oading    ------------------> spinner para mostrar o resultado da seleção e das opções
+   conteiner  ------------------> tag html que mantem todo conteudo principal da tela
+
+LET:
+   quiz     --------------------> inputs para selecionar deacordo com as opções
+   opcoes   --------------------> span com as opções de acordo com o enuciado
+   quizEnunciado  --------------> enuciado trazendo a pegunta e logo após as opções para ser selecionado
+   controle   ------------------> responsavel por acessar os índices de cada array que contém os objetos
+   posntuação  -----------------> marca a pontuação do usuário de acordo com cada seleção feita
+   beforeDoPrincipal -----------> pseudo elemento que da um efeito de transição para cada pergunta
+
+
+*****OBJETOS ARRAYs****
+CONST:
+   respostasCorretas -----------> array responsável por guardar cada resposta correta
+   respostasErradas ------------> array responsável por guardar cada resposta errada
+
+LET:
+   perguntasQuiz  --------------> array de objetos, cada objeto tem as propriedade: pergunta e resposta
+   alternativas  ---------------> array de objeto, cada objeto possui as propriedades: um, dois e tres, que são as respostas 
+
+
+
+
+******FUNÇÕES*****
+
+
+proximoEnuciado(parametro){
+
+
+}
+
+----------------------------------------------------------------------------------------------
+
+const alternativa (respostasOp){
+
+
+}
+
+----------------------------------------------------------------------------------------------
+
+retiraClass(parametro){
+
+
+}
+
+----------------------------------------------------------------------------------------------
+
+adicionarClass(parametro){
+
+
+}
+----------------------------------------------------------------------------------------------
+
+mudanca(parametro){
+
+
+}
+----------------------------------------------------------------------------------------------
+btnProximo.addEventListener{
+
+
+}
+----------------------------------------------------------------------------------------------
+verificar(parametro){
+
+
+}
+----------------------------------------------------------------------------------------------
+btnEnviar.addEventListener{
+
+
+}

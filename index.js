@@ -1,15 +1,20 @@
 const btnEnviar = document.querySelector('#enviar');
 const btnProximo = document.querySelector('#proximo');
 const principal = document.querySelector('#principal');
+const loading = document.querySelector('#spinner');
+const conteiner = document.querySelector('#conteiner-item');
 
 let quiz = document.querySelectorAll('[type=radio]');
 let opcoes = document.querySelectorAll('.opcao');
 let quizEnunciado = document.querySelector('#conteiner-item h5');
+
 let controle = 0;
 let pontuacao;
-var test = 0;
 
-var bef = window.getComputedStyle(principal,':before');
+var beforeDoPrincipal = window.getComputedStyle(principal,':before').animation.includes('espelho');
+
+let respostasCorretas = [];
+let respostasErradas = [];
 
 const perguntasQuiz=[
  {pergunta: 'Em Quantas nações Naruto é divido?',  resposta: 5},
@@ -58,6 +63,7 @@ const adicionarClass = (elemento) =>{
   return elemento
 }
 
+
 const mudanca = ()=>{
   let classAtiva =  principal.classList.toggle('acao');
   let verificar = controle >= perguntasQuiz.length - 1;
@@ -70,31 +76,50 @@ const mudanca = ()=>{
   
   retiraClass(principal);
   adicionarClass(classAtiva);
-  console.log(bef.animation);
+ 
 }
 
 btnProximo.addEventListener('click',mudanca);
 
-
-btnEnviar.addEventListener('click',()=>{
-  
-})
-
-
-
-
-
-
-const captura = ()=>{
-  
+for(let i=0; i < quiz.length; i++){
+  const selecionandoProximo = ()=>{
+    setTimeout(()=>{
+     mudanca();
+     quiz[i].checked = false;
+    },900)
+   }
+  quiz[i].addEventListener('click',(event)=>{
+    let inf = event.target.nextElementSibling.innerText;
+     if(!beforeDoPrincipal){
+      console.log(verificar(inf));
+      selecionandoProximo();
+     }
+  })
 }
 
-
-/* for(let i=0; i < quiz.length; i++){
-  if(bef.animation.substring(0,4)){
-    quiz[i].addEventListener('click',(event)=>{
-        console.log(event.target);
-        console.log(bef.animation.substring(0,4));
-    })
+const verificar = (entrada)=>{
+  let respostas =  perguntasQuiz[controle].resposta === entrada;
+  const limit = respostasCorretas.length <= 6;
+  if(respostas && limit){
+    respostasCorretas.push(entrada);  
+     return;
   }
-} */
+  respostasErradas.push(entrada);
+}                             
+
+
+btnEnviar.addEventListener('click',()=>{
+ let p = document.createElement('p')
+  
+  setTimeout(()=>{
+    //conteiner.append(p);
+    respostasCorretas.forEach((item)=>{p.innerHTML += `<p>${item}</p>`});
+    principal.previousElementSibling.lastElementChild.setAttribute('style','visibility:hidden');
+    principal.children.item(0).setAttribute('style','visibility:hidden');
+    principal.children.item(1).setAttribute('style','visibility:visibile');
+  },2000)
+  
+}); 
+
+//principal.children.item(1).setAttribute('style','visibility:visibile');
+
