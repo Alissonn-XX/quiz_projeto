@@ -161,7 +161,7 @@ const resumo = (acerto,erro,totalRespondido)=>{
   const resumototal = document.createElement('div');
     
     if(vazio){
-      resumototal.innerHTML = `<divclass="resultado"><span>Você não selecionou nenhuma opção.</span></div>`
+      resumototal.innerHTML = `<div class="resultado"><span>Você não selecionou nenhuma opção.</span></div>`
       return 
     }
     
