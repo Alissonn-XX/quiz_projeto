@@ -156,7 +156,7 @@ btnProximo.addEventListener('click',mudanca);
 const resumo = (acerto,erro,totalRespondido)=>{
   let erros = erro.length; let respostas = totalRespondido;
   let acertos = acerto.length;
-  let vazio = acerto === 0 || erro === 0 || totalRespondido === 0;
+  let vazio = acertos === 0 || erros === 0 || respostas === 0;
 
   const resumototal = document.createElement('div');
     
