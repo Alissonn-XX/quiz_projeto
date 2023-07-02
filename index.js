@@ -1,8 +1,8 @@
+const conteiner = document.querySelector('#conteiner-item');
 const btnEnviar = document.querySelector('#enviar');
 const btnProximo = document.querySelector('#proximo');
 const principal = document.querySelector('#principal');
-const loading = document.querySelector('#spinner');
-const conteiner = document.querySelector('#conteiner-item');
+const spinner = document.querySelector('#spinner');
 
 let quiz = document.querySelectorAll('[type=radio]');
 let opcoes = document.querySelectorAll('.opcao');
@@ -63,7 +63,6 @@ const adicionarClass = (elemento) =>{
   return elemento
 }
 
-
 const mudanca = ()=>{
   let classAtiva =  principal.classList.toggle('acao');
   let verificar = controle >= perguntasQuiz.length - 1;
@@ -74,12 +73,15 @@ const mudanca = ()=>{
     controle = 0;
   }
   
+  if(controle === 5){
+    envioDasRespostas();
+    return
+  }
+  
   retiraClass(principal);
   adicionarClass(classAtiva);
- 
+  console.log(controle);
 }
-
-btnProximo.addEventListener('click',mudanca);
 
 for(let i=0; i < quiz.length; i++){
   const selecionandoProximo = ()=>{
@@ -91,15 +93,16 @@ for(let i=0; i < quiz.length; i++){
   quiz[i].addEventListener('click',(event)=>{
     let inf = event.target.nextElementSibling.innerText;
      if(!beforeDoPrincipal){
-      console.log(verificar(inf));
+      verificar(inf);
       selecionandoProximo();
      }
   })
 }
 
 const verificar = (entrada)=>{
-  let respostas =  perguntasQuiz[controle].resposta === entrada;
-  const limit = respostasCorretas.length <= 6;
+  let respostas =  String(perguntasQuiz[controle].resposta) === entrada;
+  const limit = respostasCorretas.length < 6;
+  
   if(respostas && limit){
     respostasCorretas.push(entrada);  
      return;
@@ -107,19 +110,38 @@ const verificar = (entrada)=>{
   respostasErradas.push(entrada);
 }                             
 
-
-btnEnviar.addEventListener('click',()=>{
- let p = document.createElement('p')
+const envioDasRespostas = ()=>{
+  let listaCorretas = document.createElement('ul');
+  let listaErrados = document.createElement('ul');
   
+   const loading  = ()=>{
+     setTimeout(()=>{
+       principal.previousElementSibling.lastElementChild.setAttribute('style','visibility:hidden');
+       principal.children.item(0).setAttribute('style','visibility:hidden');
+       spinner.setAttribute('style','visibility:visibile');
+    },2000)
+  };
+    
   setTimeout(()=>{
-    //conteiner.append(p);
-    respostasCorretas.forEach((item)=>{p.innerHTML += `<p>${item}</p>`});
-    principal.previousElementSibling.lastElementChild.setAttribute('style','visibility:hidden');
-    principal.children.item(0).setAttribute('style','visibility:hidden');
-    principal.children.item(1).setAttribute('style','visibility:visibile');
-  },2000)
+    listaCorretas.classList.toggle('respostas-corretas');
+    listaErrados.classList.toggle('respostas-erradas');
+    respostasCorretas.forEach((item)=>{listaCorretas.innerHTML += `<li>${item}</li>`});
+    respostasErradas.forEach((item)=>{listaErrados.innerHTML += `<li>${item}</li>`});
+        conteiner.setAttribute('style','visibility:visible');
+        conteiner.innerHTML = "";
+        conteiner.classList.add('respostas-visivel');
+        conteiner.append(listaCorretas,listaErrados);
+        spinner.setAttribute('style','visibility:hidden');
+        principal.previousElementSibling.lastElementChild.setAttribute('style','visibility:visible');
+        principal.previousElementSibling.lastElementChild.innerHTML = `<span>Corretas</span><span>Erradas</span>`;
+        principal.previousElementSibling.lastElementChild.classList.add('respostas-visivel');
+      },4000);
+      
+      loading();
   
-}); 
+}  
+btnEnviar.addEventListener('click', envioDasRespostas);
 
-//principal.children.item(1).setAttribute('style','visibility:visibile');
-
+btnProximo.addEventListener('click',mudanca);  
+    
+ 
