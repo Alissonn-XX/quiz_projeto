@@ -28,4 +28,4 @@ align="center" heigth="50" width="60">
 
 ----
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/dcaecfa5-a383-412b-8bdb-988984a755a1/deploy-status)](https://app.netlify.com/sites/projetoquizxx/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/3810403b-ae87-434e-871c-11aabbf8d1ce/deploy-status)](https://app.netlify.com/sites/quiz-personalizado-cjrm/deploys)

@@ -123,14 +123,14 @@ body,html{
   display: flex;
   justify-content: space-around;
   color: #2f2e30;
+  padding: 0 5px;
+  border: 1px solid red;
 }
 .respostas-erradas{
-  padding: 0 0 0 5px;
   text-align: end;
   font-size: 16px;
 }
 .respostas-corretas{
-  padding: 0 0 0 5px;
   text-align: start;
   font-size: 16px;
 }
@@ -139,7 +139,7 @@ body,html{
   position: absolute;
   width: 1.25em;
   height: 1.25em;
-  left: 1.7em;
+  left: -0.05em;
   background-position: center;
   background-image: url(https://img.icons8.com/emoji/48/check-mark-button-emoji.png);
   border-radius: 15px;
@@ -150,7 +150,7 @@ body,html{
   position: absolute;
   width: 1.25em;
   height: 1.25em;
-  right: 1em;
+  right: -0.05em;
   background-position: center;
   background-image: url(https://img.icons8.com/color/48/close-window.png);
   border-radius: 15px;
@@ -158,10 +158,8 @@ body,html{
 }
 
 h2.respostas-visivel span{
+ 
   font-size: larger;
-  font-size: 40px;
+  font-size: 30px;
 }
 
-@media screen and (max-width: 579px){
-  
-}

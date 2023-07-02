@@ -80,7 +80,6 @@ const mudanca = ()=>{
   
   retiraClass(principal);
   adicionarClass(classAtiva);
-  console.log(controle);
 }
 
 for(let i=0; i < quiz.length; i++){
@@ -140,13 +139,14 @@ const envioDasRespostas = ()=>{
       loading();
   
 }  
-btnEnviar.addEventListener('click', envioDasRespostas);
 
-btnProximo.addEventListener('click',()=>{
-  let confirmaEnvio = confirm('Corfirma o envio das respostas selecionadas?');
-  if(confirmaEnvio){
-    mudanca();
+const confirmacao = ()=>{
+  let envio = confirm('Corfirma o envio das respostas selecionadas?');
+  if(envio){
+    envioDasRespostas();
     return
   }
-});  
- 
+}
+
+btnEnviar.addEventListener('click', confirmacao);
+btnProximo.addEventListener('click',mudanca);  
