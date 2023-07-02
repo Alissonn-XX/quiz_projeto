@@ -17,7 +17,7 @@ let respostasCorretas = [];
 let respostasErradas = [];
 
 const perguntasQuiz=[
- {pergunta: 'Em Quantas nações Naruto é divido?',  resposta: 5},
+ {pergunta: 'Em quantas nações Naruto é divido?',  resposta: 5},
  {pergunta: 'Quais os nomes das nações como ninja?', resposta: 'Terra, Vento, fogo, Trovão e Água'},
  {pergunta: 'Quem selou a raposa no corpo do Naruto?', resposta: '4 Hokaque'},
  {pergunta: 'Qual ninja tem habilidades de estrategista?', resposta: 'Shikamaru'},
@@ -107,7 +107,9 @@ const verificar = (entrada)=>{
      return;
   }
   respostasErradas.push(entrada);
+  
 }                             
+
 
 const envioDasRespostas = ()=>{
   let listaCorretas = document.createElement('ul');
@@ -134,10 +136,10 @@ const envioDasRespostas = ()=>{
         principal.previousElementSibling.lastElementChild.setAttribute('style','visibility:visible');
         principal.previousElementSibling.lastElementChild.innerHTML = `<span>Corretas</span><span>Erradas</span>`;
         principal.previousElementSibling.lastElementChild.classList.add('respostas-visivel');
+        conteiner.insertAdjacentHTML('afterend',resumo(respostasCorretas,respostasErradas,controle));   
       },4000);
       
       loading();
-  
 }  
 
 const confirmacao = ()=>{
@@ -150,3 +152,14 @@ const confirmacao = ()=>{
 
 btnEnviar.addEventListener('click', confirmacao);
 btnProximo.addEventListener('click',mudanca);  
+
+const resumo = (acerto,erro,totalRespondido)=>{
+  let erros = erro.length; let respostas = totalRespondido;
+  let acertos = acerto.length;
+  
+  const resumototal = document.createElement('div');
+  
+  return resumototal.innerHTML = `<div class="resultado"> <span>Resumo:</span> <span>Acertos:${acertos}</span> <span >Erros:${erros}</span> <span>Total respondido:${respostas}</span> </div>`;
+
+}
+

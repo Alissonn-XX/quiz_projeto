@@ -121,45 +121,54 @@ body,html{
 
 .respostas-visivel{
   display: flex;
+  max-width: 100%;
   justify-content: space-around;
   color: #2f2e30;
-  padding: 0 5px;
-  border: 1px solid red;
 }
-.respostas-erradas{
-  text-align: end;
-  font-size: 16px;
+.respostas-visivel .respostas-erradas li{
+  color: #ef210a;
 }
-.respostas-corretas{
-  text-align: start;
-  font-size: 16px;
+.respostas-visivel .respostas-corretas li{
+ color: rgb(8, 143, 6);
+} 
+
+.respostas-visivel li{
+  display: block;
+  text-align: center;
+  font-weight: 500;
+  color: #fdfdfd;
+  padding: 2px;
 }
-.respostas-visivel .respostas-corretas li::after{
+
+h2.respostas-visivel span{
+  font-size: larger;
+  font-size: 30px;
+}
+
+h2.respostas-visivel :nth-child(1)::after{
   content: '';
   position: absolute;
   width: 1.25em;
   height: 1.25em;
-  left: -0.05em;
+  left: 1.5em;
   background-position: center;
   background-image: url(https://img.icons8.com/emoji/48/check-mark-button-emoji.png);
   border-radius: 15px;
   
 }
-.respostas-visivel .respostas-erradas li::after{
+h2.respostas-visivel :nth-child(2)::after{
   content: '';
   position: absolute;
   width: 1.25em;
   height: 1.25em;
-  right: -0.05em;
+  top:0em;
+  right: 1.5em;
   background-position: center;
   background-image: url(https://img.icons8.com/color/48/close-window.png);
   border-radius: 15px;
-  
 }
 
-h2.respostas-visivel span{
- 
-  font-size: larger;
-  font-size: 30px;
+.resultado{
+  text-align: center;
+  font-weight: 500;
 }
-
