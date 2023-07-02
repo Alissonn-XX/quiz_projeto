@@ -142,6 +142,11 @@ const envioDasRespostas = ()=>{
 }  
 btnEnviar.addEventListener('click', envioDasRespostas);
 
-btnProximo.addEventListener('click',mudanca);  
-    
+btnProximo.addEventListener('click',()=>{
+  let confirmaEnvio = confirm('Corfirma o envio das respostas selecionadas?');
+  if(confirmaEnvio){
+    mudanca();
+    return
+  }
+});  
  
