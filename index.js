@@ -156,9 +156,15 @@ btnProximo.addEventListener('click',mudanca);
 const resumo = (acerto,erro,totalRespondido)=>{
   let erros = erro.length; let respostas = totalRespondido;
   let acertos = acerto.length;
-  
+  let vazio = acerto === 0 || erro === 0 || totalRespondido === 0;
+
   const resumototal = document.createElement('div');
-  
+    
+    if(vazio){
+      resumototal.innerHTML = `<divclass="resultado"><span>Você não selecionou nenhuma opção.</span></div>`
+      return 
+    }
+    
   return resumototal.innerHTML = `<div class="resultado"> <span>Resumo:</span> <span>Acertos:${acertos}</span> <span >Erros:${erros}</span> <span>Total respondido:${respostas}</span> </div>`;
 
 }
