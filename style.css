@@ -163,8 +163,5 @@ h2.respostas-visivel span{
 }
 
 @media screen and (max-width: 579px){
-  .conteiner{
-    padding: 0;
-    margin: 0;
-  }
+  
 }
