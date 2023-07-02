@@ -153,7 +153,7 @@ const confirmacao = ()=>{
 btnEnviar.addEventListener('click', confirmacao);
 btnProximo.addEventListener('click',mudanca);  
 
-const resumo = (acerto,erro,totalRespondido)=>{
+const resumo = (acerto=0,erro=0,totalRespondido=0)=>{
   let erros = erro.length; let respostas = totalRespondido;
   let acertos = acerto.length;
   let vazio = acertos === 0 || erros === 0 || respostas === 0;
