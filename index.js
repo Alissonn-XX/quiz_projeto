@@ -3,7 +3,7 @@ const btnEnviar = document.querySelector('#enviar');
 const btnProximo = document.querySelector('#proximo');
 const principal = document.querySelector('#principal');
 const spinner = document.querySelector('#spinner');
-
+const statusLogin = document.createElement('p');
 
 let quiz = document.querySelectorAll('[type=radio]');
 let opcoes = document.querySelectorAll('.opcao');
@@ -16,7 +16,7 @@ var beforeDoPrincipal = window.getComputedStyle(principal,':before').animation.i
 
 let respostasCorretas = [];
 let respostasErradas = [];
-
+const arrayText = ['Enviando respostas', 'Aguarde...', 'Checando...', 'Comparando Informações...', 'Recebendo respostas','Terminou :)'];
 const perguntasQuiz=[
  {pergunta: 'Em quantas nações Naruto é divido?',  resposta: 5},
  {pergunta: 'Quais os nomes das nações como ninja?', resposta: 'Terra, Vento, fogo, Trovão e Água'},
@@ -25,7 +25,6 @@ const perguntasQuiz=[
  {pergunta: 'Qual é o nome da organização que usa capa preta?', resposta: 'Akatisuki'},
  {pergunta: 'Qual o nome da pessoa que tem uma besta selada no corpo?', resposta: 'Jinchuuriki'}
 ];
-
 const alternativas = [
   {um: 2, dois: 5, tres: 4},
   {um: 'Terra, Vento, fogo, Trovão e Água', dois: 'Terra, Vento, fogo, Trovão', tres: 'Terra, Vento, folha, Trovão e Areia'},
@@ -117,37 +116,55 @@ const envioDasRespostas = ()=>{
   let listaCorretas = document.createElement('ul');
   let listaErrados = document.createElement('ul');
   let btnVoltar = document.createElement('button');
-  btnVoltar.classList.add('btn-voltar')
+  btnVoltar.classList.add('btn-voltar');
+ 
+
    const loading  = ()=>{
+    statusLogin.classList.add('mensagem-login');
      setTimeout(()=>{
        principal.previousElementSibling.lastElementChild.setAttribute('style','visibility:hidden');
        principal.children.item(0).setAttribute('style','visibility:hidden');
-       spinner.setAttribute('style','visibility:visibile');
-    },2000)
-  };
+      spinner.setAttribute('style','visibility:visibile');
+      },1000)
+    };
     
-  setTimeout(()=>{
-    listaCorretas.classList.toggle('respostas-corretas');
-    listaErrados.classList.toggle('respostas-erradas');
-    respostasCorretas.forEach((item)=>{listaCorretas.innerHTML += `<li>${item}</li>`});
-    respostasErradas.forEach((item)=>{listaErrados.innerHTML += `<li>${item}</li>`});
-        conteiner.setAttribute('style','visibility:visible');
-        conteiner.innerHTML = "";
-        conteiner.classList.add('respostas-visivel');
-        conteiner.append(listaCorretas,listaErrados);
-        spinner.setAttribute('style','visibility:hidden');
-        principal.previousElementSibling.lastElementChild.setAttribute('style','visibility:visible');
-        principal.previousElementSibling.lastElementChild.innerHTML = `<span>Corretas</span><span>Erradas</span>`;
-        principal.previousElementSibling.lastElementChild.classList.add('respostas-visivel');
-        conteiner.insertAdjacentHTML('afterend',resumo(respostasCorretas,respostasErradas,controle));
-        principal.append(btnVoltar)
-      },4000);
+      
+      loginSpinner(listaCorretas,listaErrados,btnVoltar);
 
       loading();
 
-      btnVoltar.addEventListener('click',()=>{window.location.reload()})
-}  
+      btnVoltar.addEventListener('click',()=>{window.location.reload()});
 
+}  
+const loginSpinner = (corretas,erradas,voltar) =>{
+  setTimeout(()=>{
+  corretas.classList.toggle('respostas-corretas');
+  erradas.classList.toggle('respostas-erradas');
+  respostasCorretas.forEach((item)=>{corretas.innerHTML += `<li>${item}</li>`});
+  respostasErradas.forEach((item)=>{erradas.innerHTML += `<li>${item}</li>`});
+      conteiner.setAttribute('style','visibility:visible');
+      conteiner.innerHTML = "";
+      conteiner.classList.add('respostas-visivel');
+      conteiner.append(corretas,erradas);
+      spinner.setAttribute('style','visibility:hidden');
+      principal.previousElementSibling.lastElementChild.setAttribute('style','visibility:visible');
+      principal.previousElementSibling.lastElementChild.innerHTML = `<span>Corretas</span><span>Erradas</span>`;
+      principal.previousElementSibling.lastElementChild.classList.add('respostas-visivel');
+      conteiner.insertAdjacentHTML('afterend',resumo(respostasCorretas,respostasErradas,controle));
+      principal.append(voltar);
+    },9000);
+  
+    const efeito = (elemento,array)=>{
+        array.forEach((letra,i)=>{
+          
+              setTimeout(()=>elemento.innerHTML = letra, 1500 * i);
+        })
+      }
+  
+   efeito(statusLogin,arrayText);
+   spinner.append(statusLogin);
+
+}
 const confirmacao = ()=>{
   let envio = confirm('Corfirma o envio das respostas selecionadas?');
   if(envio){
@@ -170,6 +187,7 @@ const resumo = (acerto,erro,totalRespondido)=>{
   return resumototal.innerHTML = `<div class="resultado"> <span>Resumo:</span> <span>Acertos:${acertos}</span> <span >Erros:${erros}</span> <span>Total respondido:${respostas}</span><p>Sua pontuação é: ${pontuacao}</p></div>`;
 
 }
+
 
 
 

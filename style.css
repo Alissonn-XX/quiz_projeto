@@ -199,3 +199,18 @@ h2.respostas-visivel :nth-child(2)::after{
   font-weight: 500;
   color: #0a75ef;
 }
+
+#spinner .mensagem-login{
+  position: absolute;
+  top:-1.7em;
+  font-size: 22px;
+  text-align: center;
+  font-weight: 500;
+  animation: ativo 2s ease-out in;
+  z-index: 42;
+ }
+ 
+ @keyframes ativo{
+   0%{transform: translateY(50px); opacity: 0}
+   50%{opacity: 0;}
+ }
