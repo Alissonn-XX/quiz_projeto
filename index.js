@@ -4,12 +4,13 @@ const btnProximo = document.querySelector('#proximo');
 const principal = document.querySelector('#principal');
 const spinner = document.querySelector('#spinner');
 
+
 let quiz = document.querySelectorAll('[type=radio]');
 let opcoes = document.querySelectorAll('.opcao');
 let quizEnunciado = document.querySelector('#conteiner-item h5');
 
 let controle = 0;
-let pontuacao;
+let pontuacao = 0;
 
 var beforeDoPrincipal = window.getComputedStyle(principal,':before').animation.includes('espelho');
 
@@ -103,6 +104,7 @@ const verificar = (entrada)=>{
   const limit = respostasCorretas.length < 6;
   
   if(respostas && limit){
+    pontuacao += 5
     respostasCorretas.push(entrada);  
      return;
   }
@@ -114,7 +116,8 @@ const verificar = (entrada)=>{
 const envioDasRespostas = ()=>{
   let listaCorretas = document.createElement('ul');
   let listaErrados = document.createElement('ul');
-  
+  let btnVoltar = document.createElement('button');
+  btnVoltar.classList.add('btn-voltar')
    const loading  = ()=>{
      setTimeout(()=>{
        principal.previousElementSibling.lastElementChild.setAttribute('style','visibility:hidden');
@@ -136,10 +139,13 @@ const envioDasRespostas = ()=>{
         principal.previousElementSibling.lastElementChild.setAttribute('style','visibility:visible');
         principal.previousElementSibling.lastElementChild.innerHTML = `<span>Corretas</span><span>Erradas</span>`;
         principal.previousElementSibling.lastElementChild.classList.add('respostas-visivel');
-        conteiner.insertAdjacentHTML('afterend',resumo(respostasCorretas,respostasErradas,controle));   
+        conteiner.insertAdjacentHTML('afterend',resumo(respostasCorretas,respostasErradas,controle));
+        principal.append(btnVoltar)
       },4000);
-      
+
       loading();
+
+      btnVoltar.addEventListener('click',()=>{window.location.reload()})
 }  
 
 const confirmacao = ()=>{
@@ -150,22 +156,25 @@ const confirmacao = ()=>{
   }
 }
 
+const resumo = (acerto,erro,totalRespondido)=>{
+  let acertos = acerto.length;
+  let erros = erro.length; 
+  let respostas = totalRespondido;
+  const resumototal = document.createElement('div');
+  
+
+    if(totalRespondido === 0){
+      return  resumototal.innerHTML = `<div class="resultado"><span>Você não selecionou nenhuma opção.</span><p>Sua pontuação é: ${pontuacao}</p></div>`;
+    }
+   
+  return resumototal.innerHTML = `<div class="resultado"> <span>Resumo:</span> <span>Acertos:${acertos}</span> <span >Erros:${erros}</span> <span>Total respondido:${respostas}</span><p>Sua pontuação é: ${pontuacao}</p></div>`;
+
+}
+
+
+
 btnEnviar.addEventListener('click', confirmacao);
 btnProximo.addEventListener('click',mudanca);  
 
-const resumo = (acerto=0,erro=0,totalRespondido)=>{
-  let erros = erro.length; let respostas = totalRespondido;
-  let acertos = acerto.length;
-  let vazio = acerto === 0 || erro === 0 || totalRespondido === 0;
 
-  const resumototal = document.createElement('div');
-    
-    if(vazio){
-      resumototal.innerHTML = `<div class="resultado"><span>Você não selecionou nenhuma opção.</span></div>`;
-      return 
-    }
-    
-  return resumototal.innerHTML = `<div class="resultado"> <span>Resumo:</span> <span>Acertos:${acertos}</span> <span >Erros:${erros}</span> <span>Total respondido:${respostas}</span> </div>`;
-
-}
 
