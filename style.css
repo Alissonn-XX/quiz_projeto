@@ -114,6 +114,10 @@ body,html{
   50%{opacity: 0.5; background: #b0a8b9;}
 }
 
+#enviar,#proximo{
+  margin: 5px 0;
+}
+
 #spinner{
   position: relative;
   top: -140px;
@@ -146,15 +150,15 @@ body,html{
 
 h2.respostas-visivel span{
   font-size: larger;
-  font-size: 25px;
+  font-size: 22px;
 }
 
 h2.respostas-visivel :nth-child(1)::after{
   content: '';
   position: absolute;
-  width: 1em;
-  height: 1em;
-  top: 0.2em;
+  width: 0.80em;
+  height: 0.80em;
+  top: 0.25em;
   left: 0.1em;
   background-position: center;
   background-image: url(https://img.icons8.com/emoji/48/check-mark-button-emoji.png);
@@ -164,9 +168,9 @@ h2.respostas-visivel :nth-child(1)::after{
 h2.respostas-visivel :nth-child(2)::after{
   content: '';
   position: absolute;
-  width: 1em;
-  height: 1em;
-  top: 0.2em;
+  width: 0.80em;
+  height: 0.80em;
+  top: 0.25em;
   right: 0.1em;
   background-position: center;
   background-image: url(https://img.icons8.com/color/48/close-window.png);
@@ -205,7 +209,7 @@ h2.respostas-visivel :nth-child(2)::after{
 #spinner .mensagem-login{
   position: absolute;
   top:-1.7em;
-  font-size: 19px;
+  font-size: 18px;
   text-align: center;
   font-weight: 500;
   animation: ativo 2s ease-out in;
@@ -215,4 +219,18 @@ h2.respostas-visivel :nth-child(2)::after{
  @keyframes ativo{
    0%{transform: translateY(50px); opacity: 0}
    50%{opacity: 0;}
+ }
+
+ @media screen and (max-width: 579px){
+   #conteiner-item span{
+    display: inline-block;
+    text-align: justify;
+    width: 80%;
+     
+   }
+
+   #conteiner-item input{
+    margin: 15px 0 0 0;
+   }
+
  }
