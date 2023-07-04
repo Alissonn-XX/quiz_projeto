@@ -125,32 +125,24 @@ body,html{
 
 .respostas-visivel{
   display: flex;
-  max-width: 100%;
-  justify-content: space-around;
+  justify-content: space-between;
   color: #2f2e30;
+  font-weight: 500;
 }
+
+
 .respostas-visivel .respostas-erradas li{
-  text-align: end;
- white-space: break-spaces;
   color: #ef210a;
 }
 .respostas-visivel .respostas-corretas li{
-  text-align: start;
-  white-space: break-spaces;
  color: rgb(8, 143, 6);
-} 
 
-.respostas-visivel li{
-  display: block;
-  text-align: center;
-  font-weight: 500;
-  color: #fdfdfd;
-  padding: 2px;
-}
+} 
 
 h2.respostas-visivel span{
   font-size: larger;
-  font-size: 22px;
+  font-size: 21px;
+  margin: 0 15px;
 }
 
 h2.respostas-visivel :nth-child(1)::after{
@@ -160,6 +152,7 @@ h2.respostas-visivel :nth-child(1)::after{
   height: 0.80em;
   top: 0.25em;
   left: 0.1em;
+  margin: 0 0 0 5px;
   background-position: center;
   background-image: url(https://img.icons8.com/emoji/48/check-mark-button-emoji.png);
   border-radius: 15px;
@@ -172,6 +165,7 @@ h2.respostas-visivel :nth-child(2)::after{
   height: 0.80em;
   top: 0.25em;
   right: 0.1em;
+  margin: 0 0 0 50px;
   background-position: center;
   background-image: url(https://img.icons8.com/color/48/close-window.png);
   border-radius: 15px;
@@ -208,8 +202,8 @@ h2.respostas-visivel :nth-child(2)::after{
 
 #spinner .mensagem-login{
   position: absolute;
-  top:-1.7em;
-  font-size: 18px;
+  top:-1.9em;
+  font-size: 15px;
   text-align: center;
   font-weight: 500;
   animation: ativo 2s ease-out in;
@@ -224,13 +218,10 @@ h2.respostas-visivel :nth-child(2)::after{
  @media screen and (max-width: 579px){
    #conteiner-item span{
     display: inline-block;
-    text-align: justify;
     width: 80%;
      
    }
-
-   #conteiner-item input{
-    margin: 15px 0 0 0;
-   }
+ 
+  
 
  }
